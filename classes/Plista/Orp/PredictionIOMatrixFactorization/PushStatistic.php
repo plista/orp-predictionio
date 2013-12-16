@@ -56,7 +56,7 @@ class PushStatistic implements Handle {
 	 * Method that registers clicks and impressions on item
 	 */
 	public function push($mode) {
-		$log='';
+		#$log='';
 		//check if user allready exists
 		$client = $this->model->getClient();
 		try{
@@ -67,9 +67,9 @@ class PushStatistic implements Handle {
 			$command = $client->getCommand('create_user', array('pio_uid' => $this->userid));
 			$client->execute($command);
 		}catch(UnidentifiedUserException $e2){
-			$log.='Caught exception: PushStatistic Failed, unkown user'.  $e2->getMessage(). "\n";
+			#	$log.='Caught exception: PushStatistic Failed, unkown user'.  $e2->getMessage(). "\n";
 		}catch(\Exception $e3){
-			$log.='Caught exception:Something bad happend'.  $e3->getMessage(). "\n";
+			#	$log.='Caught exception:Something bad happend'.  $e3->getMessage(). "\n";
 		}
 
 		try{
@@ -81,16 +81,16 @@ class PushStatistic implements Handle {
 				$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'view', 'pio_iid' => $this->itemid)));
 			}
 		}catch(BadResponseException $e){
-			$log.='Caught exception: PushStatistic Failed'.  $e->getMessage(). "\n";
+			#	$log.='Caught exception: PushStatistic Failed'.  $e->getMessage(). "\n";
 		}catch(UnidentifiedUserException $e2){
-			$log.='Caught exception: PushStatistic Failed, unkown user'.  $e2->getMessage(). "\n";
+			#	$log.='Caught exception: PushStatistic Failed, unkown user'.  $e2->getMessage(). "\n";
 			$command = $client->getCommand('create_user', array('pio_uid' => $this->userid));
 			$client->execute($command);
 		}catch(\Exception $e3){
-			$log.='Caught exception:Something bad happend'.  $e3->getMessage(). "\n";
+			#	$log.='Caught exception:Something bad happend'.  $e3->getMessage(). "\n";
 		}
 
-		file_put_contents( self::$path.'PushStatistic.log', $log. '------------------------'."\n", FILE_APPEND | LOCK_EX);
+		#file_put_contents( self::$path.'PushStatistic.log', $log. '------------------------'."\n", FILE_APPEND | LOCK_EX);
 	}
 
 
@@ -113,15 +113,15 @@ class PushStatistic implements Handle {
 			$this->itemid =$context->getItem_source();
 			$this->push('impression');
 		}
-		/**
-		 * uncomment for PushStatistic log
-		 */
-
-		$today = date("m.d.y");
-		$res = file_put_contents( self::$path.'PushStatistic_' . $today . '.log', serialize($body) . "\n", FILE_APPEND | LOCK_EX);
-
-		if (!$res) {
-			throw new \Exception('Error: Unable to write to statistic file :(');
-		}
+//		/**
+//		 * uncomment for PushStatistic log
+//		 */
+//
+//		$today = date("m.d.y");
+//		$res = file_put_contents( self::$path.'PushStatistic_' . $today . '.log', serialize($body) . "\n", FILE_APPEND | LOCK_EX);
+//
+//		if (!$res) {
+//			throw new \Exception('Error: Unable to write to statistic file :(');
+//		}
 	}
 }

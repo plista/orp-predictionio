@@ -52,9 +52,9 @@ class PushItem implements Handle {
 		try{
 			$client->execute($command);
 		}catch  (BadResponseException $e) {
-			$log.='Caught exception: PushItem Push Failed'.  $e->getMessage(). "\n";
+			#$log.='Caught exception: PushItem Push Failed'.  $e->getMessage(). "\n";
 		}
-		file_put_contents( self::$path.'PushItem.log', $log. '------------------------'."\n", FILE_APPEND | LOCK_EX);
+		#file_put_contents( self::$path.'PushItem.log', $log. '------------------------'."\n", FILE_APPEND | LOCK_EX);
 	}
 
 	public function invalidateItem(){
@@ -64,9 +64,9 @@ class PushItem implements Handle {
 		try{
 			$client->execute($command);
 		}catch (BadResponseException $e){
-			$log.='Caught exception: PushItem invalidate failed'.  $e->getMessage(). "\n";
+			#$log.='Caught exception: PushItem invalidate failed'.  $e->getMessage(). "\n";
 		}
-		file_put_contents( self::$path.'PushItem.log', $log. '------------------------'."\n", FILE_APPEND | LOCK_EX);
+		#file_put_contents( self::$path.'PushItem.log', $log. '------------------------'."\n", FILE_APPEND | LOCK_EX);
 	}
 
 	/**
@@ -74,7 +74,7 @@ class PushItem implements Handle {
 	 * @return mixed
 	 */
 	public function handle($body) {
-        $this->model = new Model();
+		$this->model = new Model();
 		$this->itemId= intval($body['id']);
 		$this->label = strval($body['domainid']);
 		if($body['flag']== 0){ //check for invalidation flag
