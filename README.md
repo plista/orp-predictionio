@@ -34,4 +34,13 @@ and copy:
 `cd vendor`<br>
 `git clone https://github.com/plista/orp-sdk-php.git`<br>
 
-**7. Add new Recommender engines using the PredictionIO webinterface**
+**7. Configure PredictionIO using the PredictionIO webinterface**
+Connect to the predictionio webinterface using you browser.
+Create a new App.
+Copy-paste the App key to ../orp-predictionIO/classes/Plista/Orp/PredictionIOMatrixFactorization/Model.php
+$client = PredictionIOClient::factory(array("appkey" => "insert key here"));
+
+**8. Setup Recommender**
+This orp-predictionio client assumes that you created two Item Recommendation Engines and one item Similarity Engine.
+You will have to adjust  ../orp-predictionIO/classes/Plista/Orp/PredictionIOMatrixFactorization/Fetch.php
+such that it fits to the Item Recommendation Engines you created.
