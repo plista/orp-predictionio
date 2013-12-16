@@ -42,7 +42,7 @@ class PushItem implements Handle {
 	}
 
 	/**
-	 * push item notifications to kornakapi
+	 * push item notifications to predictionio
 	 * we can use the pio_itypes tag to label items for a domain
 	 */
 	public function push() {

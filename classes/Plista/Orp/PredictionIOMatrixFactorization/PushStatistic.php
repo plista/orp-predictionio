@@ -7,8 +7,8 @@ use Plista\Orp\Sdk\Context;
 use PredictionIO\UnidentifiedUserException;
 
 /**
- * Class PushStatistic, this class updates the itemstatistics for the useres
- * @package Plista\Orp\orp-sdk-php\KornakapiMatrixFactorization
+ * Class PushStatistic
+ * @package Plista\Orp\PredictionIOMatrixFactorization
  */
 class PushStatistic implements Handle {
 	protected $supported_action = array('impression', 'click');

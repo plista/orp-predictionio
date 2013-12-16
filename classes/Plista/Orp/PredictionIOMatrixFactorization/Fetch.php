@@ -70,8 +70,8 @@ class Fetch implements Handle {
 
 	/**
 	 * This class, fetches the recommendations
-	 * first if userid is given and the userid is in taste_preferences, we ask kornakapi for recommendations for this user, based on his item history
-	 * if there is no userid  or the user is new (not in the database) but an itemid is given we ask kornakapi for recommendations similar to that item.
+	 * first if userid is given and the userid is in taste_preferences, we ask predictionio for recommendations for this user, based on his item history
+	 * if there is no userid  or the user is new (not in the database) but an itemid is given we ask predictionio for recommendations similar to that item.
 	 * @return array|Recs
 	 */
 	public function fetch() {
@@ -161,7 +161,7 @@ class Fetch implements Handle {
 	}
 
 	/**
-	 * Method that normalizes the scores of the recommendations by kornakapi
+	 * Method that normalizes the scores of the recommendations by predictionio
 	 * @param array $itemids
 	 * @return array
 	 */
