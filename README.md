@@ -11,7 +11,7 @@ Setup:
 an installation guide can be found here: http://docs.prediction.io/current/installation/index.html
 
 **2. Download orp-predictionio
-`https://github.com/KukumavMozolo/orp-predictionio.git`<br>
+`git clone https://github.com/plista/orp-predictionio.git`<br>
 
 
 **3. Create Composer Project**
