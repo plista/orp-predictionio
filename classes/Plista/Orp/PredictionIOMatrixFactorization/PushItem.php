@@ -46,7 +46,7 @@ class PushItem implements Handle {
 	 * we can use the pio_itypes tag to label items for a domain
 	 */
 	public function push() {
-		$log='';
+		#$log='';
 		$client = $this->model->getClient();
 		$command = $client->getCommand('create_item', array('pio_iid' => $this->itemId, 'pio_itypes' => strval($this->label)));
 		try{
@@ -58,7 +58,7 @@ class PushItem implements Handle {
 	}
 
 	public function invalidateItem(){
-		$log='';
+		#$log='';
 		$client = $this->model->getClient();
 		$command = $client->getCommand('delete_item', array('pio_iid' => strval($this->itemId)));
 		try{
