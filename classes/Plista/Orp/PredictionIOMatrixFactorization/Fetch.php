@@ -134,7 +134,7 @@ class Fetch implements Handle {
 			$log.= "\n Fallback \n";
 			try{
 				$client = $this->model->getClient();
-				$client->identify("1");  //Id one is zero id 2.0
+				$client->identify("0");  //Id one is zero id 2.0
 				$command = $client->getCommand('itemrec_get_top_n', array('pio_engine' => 'fallback', 'pio_itypes' => strval($this->label),'pio_n' => $this->limit));
 				$res = $client->execute($command);
 				$log.= "\n Recommendations: ".serialize($res) . "\n";
