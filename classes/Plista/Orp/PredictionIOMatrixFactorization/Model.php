@@ -15,7 +15,7 @@ class Model {
 	 * @return PredictionIOClient
 	 */
 	public function getClient() {
-		$client = PredictionIOClient::factory(array("appkey" => "frWH21Kk6IciyuPBXI6xc6wOfxqrLuvqGSXDMAC1dBClTow3bWLfC350c3Yhy1Qi"));
+		$client = PredictionIOClient::factory(array("appkey" => "MjS7AqfdeZqSpEWjAEOk7BkrgnmllsntprxCVrG9TkVonLSDAFlQxGxnO6csuCx5"));
 			return $client;
 	}
 

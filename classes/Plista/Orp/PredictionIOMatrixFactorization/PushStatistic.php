@@ -18,12 +18,12 @@ class PushStatistic implements Handle {
 	/**
 	 * @var int
 	 */
-	public $itemid = 0;
+	public $clickedItemId = 0;
 
 	/**
 	 * @var int
 	 */
-	public $itemsource;
+	public $itemSource;
 
 	/**
 	 * optional
@@ -75,12 +75,12 @@ class PushStatistic implements Handle {
 		try{
 			$client->identify($this->userid);
 			if($mode === 'click'){
-				$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'view', 'pio_iid' => $this->itemid)));
-				if($this->itemsource !=0){
-					$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'conversion', 'pio_iid' => $this->itemsource)));
+				$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'view', 'pio_iid' => $this->clickedItemId)));
+				if($this->itemSource !=0){
+					$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'conversion', 'pio_iid' => $this->itemSource)));
 				}
 			}else{
-				$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'view', 'pio_iid' => $this->itemid)));
+				$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'view', 'pio_iid' => $this->itemSource)));
 			}
 		}catch(BadResponseException $e){
 			#	$log.='Caught exception: PushStatistic Failed'.  $e->getMessage(). "\n";
@@ -107,12 +107,12 @@ class PushStatistic implements Handle {
 		$this->userid = strval($this->model->idMapping($body['context']['simple']['57']));
 
 		if(isset($body['recs']['ints'][3][0])){	//if click
-			$this->itemid = $body['recs']['ints'][3][0];
-			$this->itemsource = isset($body['context']['simple'][25]) ? $body['context']['simple'][25] : 0 ;
+			$this->clickedItemId = $body['recs']['ints'][3][0];
+			$this->itemSource = isset($body['context']['simple'][25]) ? $body['context']['simple'][25] : 0 ;
 			$this->push('click');
 		}
 		elseif($context->getItem_source()){	//if impression
-			$this->itemid =$context->getItem_source();
+			$this->itemSource =$context->getItem_source();
 			$this->push('impression');
 		}
 //		/**
