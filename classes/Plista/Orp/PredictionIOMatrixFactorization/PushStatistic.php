@@ -75,8 +75,10 @@ class PushStatistic implements Handle {
 		try{
 			$client->identify($this->userid);
 			if($mode === 'click'){
-				$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'conversion', 'pio_iid' => $this->itemsource)));
 				$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'view', 'pio_iid' => $this->itemid)));
+				if($this->itemsource !=0){
+					$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'conversion', 'pio_iid' => $this->itemsource)));
+				}
 			}else{
 				$client->execute($client->getCommand('record_action_on_item', array('pio_action' => 'view', 'pio_iid' => $this->itemid)));
 			}
